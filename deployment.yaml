@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deploy-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-deploy
+  template:
+    metadata:
+      labels:
+        app: demo-deploy
+    spec:
+      containers:
+      - name: demo-deploy 
+        image: devopsacr123456.azurecr.io/devopsacr123456:latest  
+        ports:
+        - containerPort: 80
