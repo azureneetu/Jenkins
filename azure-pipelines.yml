@@ -20,6 +20,13 @@ steps:
     Contents: 'target/*.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+- script: |
+    echo "Files in target folder:"
+    ls -la target
+    echo "Files in artifact staging folder:"
+    ls -la $(Build.ArtifactStagingDirectory)
+  displayName: 'Verify JAR files'
+
 - task: AzureWebApp@1
   displayName: 'Deploy to Azure Web App'
   inputs:
