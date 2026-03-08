@@ -14,18 +14,10 @@ steps:
     jdkVersionOption: '17'
     publishJUnitResults: false
 
-- task: CopyFiles@2
-  displayName: 'Copy JAR'
-  inputs:
-    Contents: 'target/*.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - script: |
     echo "Files in target folder:"
     ls -la target
-    echo "Files in artifact staging folder:"
-    ls -la $(Build.ArtifactStagingDirectory)
-  displayName: 'Verify JAR files'
+  displayName: 'Verify build output'
 
 - task: AzureWebApp@1
   displayName: 'Deploy to Azure Web App'
@@ -33,4 +25,4 @@ steps:
     azureSubscription: 'azureConnectionYaml'
     appType: 'webAppLinux'
     appName: 'yamlPipelineApp'
-    package: '$(Build.ArtifactStagingDirectory)/*.jar'
+    package: '$(System.DefaultWorkingDirectory)/target/*.jar'
