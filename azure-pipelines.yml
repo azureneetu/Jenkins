@@ -23,7 +23,6 @@ steps:
   inputs:
     Contents: 'target/*.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: AzureWebApp@1
   displayName: 'Deploy to Azure Web App'
   inputs:
