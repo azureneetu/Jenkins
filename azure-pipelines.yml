@@ -4,10 +4,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  azureServiceConnection: 'azureConnectionYaml'
-  webAppName: 'yamlPipelineApp'
-
 steps:
 - task: Maven@4
   displayName: 'Build Maven Project'
@@ -23,6 +19,7 @@ steps:
   inputs:
     Contents: 'target/*.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: AzureWebApp@1
   displayName: 'Deploy to Azure Web App'
   inputs:
